@@ -357,11 +357,11 @@ static FGCError recvNumericTagHeader(ForkGC *fgc, char **fieldName, size_t *fiel
 }
 
 static void FGC_childCollectNumeric(ForkGC *gc, RedisSearchCtx *sctx) {
-  RedisModuleKey *idxKey = NULL;
   FieldSpec **numericFields = getFieldsByType(sctx->spec, INDEXFLD_T_NUMERIC);
 
   if (array_len(numericFields) != 0) {
     for (int i = 0; i < array_len(numericFields); ++i) {
+      RedisModuleKey *idxKey = NULL;
       RedisModuleString *keyName =
           IndexSpec_GetFormattedKey(sctx->spec, numericFields[i], INDEXFLD_T_NUMERIC);
       NumericRangeTree *rt = OpenNumericIndex(sctx, keyName, &idxKey);
