@@ -466,6 +466,8 @@ NumericRangeTree *OpenNumericIndex(RedisSearchCtx *ctx, RedisModuleString *keyNa
     int type = RedisModule_KeyType(*idxKey);
     if (type != REDISMODULE_KEYTYPE_EMPTY &&
         RedisModule_ModuleTypeGetType(*idxKey) != NumericIndexType) {
+      RedisModule_CloseKey(*idxKey);
+      *idxKey = NULL;
       return NULL;
     }
 
