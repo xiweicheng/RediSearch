@@ -131,7 +131,7 @@ uint32_t simpleTokenizer_Next(RSTokenizer *base, Token *t) {
     return ctx->lastOffset;
   }
 
-  return 0;
+  return ctx->lastOffset;
 }
 
 void simpleTokenizer_Free(RSTokenizer *self) {
